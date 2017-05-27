@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.7.2.js"></script>
+</head>
+<script>
+    function reloadImage() {
+        document.getElementById("btn").disabled = true;
+        document.getElementById("identity").src = 'servlet/IdentityServlet?ts=' + new Date().getTime();
+    }
+</script>
+<body>
+<img src="servlet/IdentityServlet" id="identity" onload="btn.disabled = false;">
+<input type="button" value="换个图片" onclick="reloadImage()" id="btn">
+</body>
+</html>
