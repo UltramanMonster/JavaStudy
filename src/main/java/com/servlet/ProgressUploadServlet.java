@@ -35,27 +35,25 @@ public class ProgressUploadServlet extends HttpServlet {
                 if (item.isFormField()){//如果是表单数据
                     System.out.println("FormField:" + item.getFieldName() + " = " + item.getString());
                 }else {//否则就是上传的文件
-                    System.out.println("File:" + item.getName());
-                    //统一Linux与Windows的路径分隔符
-                    //String fileName = item.getName().replace("/","\\");
-                    //fileName = fileName.substring(fileName.lastIndexOf("\\"),-1);
-                    String fileName = System.currentTimeMillis() + ".jpg";
-                    File saved = new File("D:\\upload_test",fileName);//创建文件对象
-                    saved.getParentFile().mkdirs();//保证路径存在
+                    String name = item.getName();
+                    if (!name.equals("") && name != null){
+                        String fileName = System.currentTimeMillis() + name.substring(name.lastIndexOf("."),name.length());
+                        File saved = new File("D:\\upload_test",fileName);//创建文件对象
+                        saved.getParentFile().mkdirs();//保证路径存在
 
-                    InputStream ins = item.getInputStream();
-                    OutputStream ous = new FileOutputStream(saved);
+                        InputStream ins = item.getInputStream();
+                        OutputStream ous = new FileOutputStream(saved);
 
-                    byte[] tmp = new byte[1024];
-                    int len = -1;
-                    while ((len = ins.read(tmp)) != -1){
-                        ous.write(tmp, 0, len);
+                        byte[] tmp = new byte[1024];
+                        int len = -1;
+                        while ((len = ins.read(tmp)) != -1){
+                            ous.write(tmp, 0, len);
+                        }
+
+                        ous.close();
+                        ins.close();
+                        response.getWriter().println("已保存文件：" +saved);
                     }
-
-                    ous.close();
-                    ins.close();
-                    response.getWriter().println("已保存文件：" +saved);
-
                 }
 
             }

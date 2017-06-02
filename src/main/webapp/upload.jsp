@@ -75,7 +75,7 @@
                 debug("发生错误。req.status:" + req.status + "");
                 return;
             }
-            debug("status.jsp 返回值：" + req.responseText);//显示debug信息
+            /*debug("status.jsp 返回值：" + req.responseText);//显示debug信息*/
             var ss = req.responseText.split("||");
             $('progressBarItem').style.width = '' + ss[0] + '%';
             $('statusInfo').innerHTML = '<br/>已完成百分比：' + ss[0] + '% <br/> 已完成数（M）' + ss[1]
