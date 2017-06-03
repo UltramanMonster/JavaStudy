@@ -9,9 +9,20 @@
         <servlet-name>HelloServlet</servlet-name>
         <servlet-class>com.servlet.HelloServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LifeCycleServlet</servlet-name>
+        <servlet-class>com.servlet.LifeCycleServlet</servlet-class>
+        <init-param>
+            <param-name>startPoint</param-name>
+            <param-value>1600</param-value>
+        </init-param>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
         <url-pattern>/servlet/HelloServlet</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>LifeCycleServlet</servlet-name>
+        <url-pattern>/servlet/LifeCycleServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
